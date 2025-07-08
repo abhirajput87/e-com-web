@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Navbar from './components/Navbar.jsx'
+import { Route, Routes } from 'react-router-dom'
+import Home from './page/Home.jsx'
+import Footer from './components/Footer.jsx'
+import LogIn from './page/LogIn.jsx'
+import SignUp from './page/SignUp.jsx'
 
-function App() {
+import { useLocation } from 'react-router-dom';
+
+const App = () => {
+  const location = useLocation();
+  const hideLayout = location.pathname === "/logIn" || location.pathname === "/signUp";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!hideLayout && <Navbar />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products/:id" element={<productDetails />} />
+        <Route path="/LogIn" element={<LogIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
+      </Routes>
+
+      {!hideLayout && <Footer />}
     </div>
   );
-}
+};
 
-export default App;
+export default App
