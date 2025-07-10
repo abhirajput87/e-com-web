@@ -4,23 +4,28 @@ import { AppContext } from "../context/appContext";
 import Product from "../components/Product";
 
 const Home = () => {
-  const { loading, post } = useContext(AppContext);
-  const { filteredProducts } = useContext(AppContext);
+  const { loading, post, filteredProducts } = useContext(AppContext);
 
   return (
-    <div className="">
+    <div className="w-11/12 max-w-[1200px] mx-auto min-h-screen py-8">
+      {/* Spinner while loading */}
       {loading ? (
-        <Spinner />
+        <div className="flex justify-center items-center h-[80vh]">
+          <Spinner />
+        </div>
       ) : post.length > 0 ? (
-        <div className="max-w-6xl p-4 mx-auto space-y-10 space-x-5 grid-cols-3 grid-flow-row grid mt-4 ">
+        // Product Grid
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
           {filteredProducts.map((product) => (
-            <Product key={product.id} product={product}/>
-            
+            <Product key={product.id} product={product} />
           ))}
         </div>
       ) : (
-        <div className="">
-          <span className="flex justify-center  h-100vh ">No data found</span>
+        // No Data Fallback
+        <div className="flex justify-center items-center h-[60vh]">
+          <span className="text-2xl font-semibold text-gray-500">
+            No data found
+          </span>
         </div>
       )}
     </div>

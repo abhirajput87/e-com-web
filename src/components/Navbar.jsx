@@ -17,8 +17,7 @@ const Navbar = () => {
 
   const { isHovered, setIsHovered, filterHandler, products } = useContext(AppContext);
 
-  const categories = [...new Set(products.map(item => item.category))]; // ✅ dynamic unique categories
-
+  const categories = [...new Set(products.map(item => item.category))]; 
   return (
     <nav className='flex w-full z-50 justify-around h-14 bg-gray-400'>
       {/* Logo */}
@@ -32,7 +31,7 @@ const Navbar = () => {
 
       {/* Category Buttons */}
       <div className='flex gap-4 items-center'>
-        {categories.length === 0 && <p>No categories found</p>}
+        {categories.length === 0 && <p className='font-bold text-'>No categories found</p>}
         
         {categories.map((category, index) => (
             <button

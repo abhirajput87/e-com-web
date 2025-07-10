@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { products as localProducts } from "../data";
+// import { products as localProducts } from "../data";
 
 export const AppContext = createContext();
 
@@ -25,15 +25,24 @@ export default function AppContextProvider({ children }) {
     setLoading(false);
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchProductData();
   }, []);
 
   // Local data from data.js
   useEffect(() => {
+    if (post.length > 0) {
+      setProducts(post);
+      setFilteredProducts(post);
+    }
+  }, [post]);
+
+   /*
+  useEffect(() => {
     setProducts(localProducts);
     setFilteredProducts(localProducts); 
   }, []);
+  */
 
   
   const filterHandler = (category) => {

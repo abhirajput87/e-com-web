@@ -5,6 +5,8 @@ import Home from './page/Home.jsx'
 import Footer from './components/Footer.jsx'
 import LogIn from './page/LogIn.jsx'
 import SignUp from './page/SignUp.jsx'
+import ProductDetail from './page/ProductDetail.jsx';
+
 
 import { useLocation } from 'react-router-dom';
 
@@ -18,7 +20,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products/:id" element={<productDetails />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/SignUp" element={<SignUp />} />
       </Routes>
